@@ -6,6 +6,7 @@ public class A1Jedi {
 	public static void main(String[] args) {
 		int itemsNumber, personNumber, itemNumberOfperson, itemPerPerson;
 		String[] itemList = new String[1000];
+		boolean[] repeatflag = new boolean[1000];
 		String itemName;
 		int[] itemNumber = new int[1000];
 		int[] customerBuyItem = new int[1000];
@@ -25,10 +26,16 @@ public class A1Jedi {
 				itemName = scanner.next();
 				for (int k = 1; k <= itemsNumber; k++) {
 					if (itemName.equals(itemList[k])) {
-						customerBuyItem[k] ++;
+						if (repeatflag[k] == false) {
+							customerBuyItem[k] ++;
+							repeatflag[k] = true;
+						}
 						itemNumber[k] += itemNumberOfperson;
 					}
 				}
+			}
+			for (int k = 1; k <= itemsNumber; k++) {
+				repeatflag[k] = false;
 			}
 		}
 		scanner.close();
